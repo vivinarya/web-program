@@ -51,7 +51,7 @@ export const DetonateButton: React.FC<DetonateButtonProps> = ({
       onMouseEnter={() => setIsHovered(true)}
       onClick={onClick}
       disabled={disabled}
-      className={`btn-stark relative group ${isHovered ? "shiver" : ""} ${disabled ? "opacity-30 grayscale pointer-events-none" : ""}`}
+      className={`btn-stark relative group transition-transform duration-300 hover:scale-[1.03] active:scale-[0.97] ${isHovered ? "shiver" : ""} ${disabled ? "opacity-30 grayscale pointer-events-none hover:scale-100" : ""}`}
     >
       <span className="relative z-10">{children}</span>
       <div className="absolute inset-0 bg-white opacity-0 group-hover:opacity-10 transition-opacity duration-300" />

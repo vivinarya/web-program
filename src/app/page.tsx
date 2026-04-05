@@ -173,14 +173,8 @@ export default function Home() {
       {/* Header */}
       <header className="relative z-10 p-8 flex justify-between items-end border-b border-zinc-900 bg-black/60 backdrop-blur-md">
         <div className="space-y-1">
-            <h1 className="text-2xl font-black tracking-tighter uppercase sm:text-4xl">AlgoVision <span className="text-zinc-600">:::</span> Engine</h1>
-            <p className="text-[10px] text-zinc-500 tracking-[0.3em] uppercase">Computational Kinetic Visualizer // A-G S-01</p>
-        </div>
-        <div className="hidden sm:block text-right">
-            <div className="text-[10px] text-zinc-600 uppercase mb-1">Status</div>
-            <div className={`text-[11px] font-bold uppercase ${isSorting ? "text-white animate-pulse" : "text-zinc-700"}`}>
-                {isSorting ? "Sorting..." : "Standby"}
-            </div>
+            <h1 className="text-3xl font-black tracking-tighter uppercase sm:text-5xl glimmer-hover-text cursor-default">AlgoVision <span className="text-zinc-600">:::</span> Engine</h1>
+            <p className="text-[12px] text-zinc-500 tracking-[0.3em] uppercase">Computational Kinetic Visualizer // A-G S-01</p>
         </div>
       </header>
 
@@ -190,16 +184,16 @@ export default function Home() {
         {/* Sidebar Controls */}
         <div className="p-8 flex flex-col gap-12 bg-black/40">
             <section className="space-y-6">
-                <h2 className="text-[10px] text-zinc-600 tracking-widest uppercase">01 / Algorithm Select</h2>
-                <div className="flex flex-col gap-2">
+                <h2 className="text-xs text-zinc-500 tracking-widest uppercase">01 / Algorithm Select</h2>
+                <div className="flex flex-col gap-3">
                     {availableAlgorithms.map((algo) => (
                         <button
                             key={algo}
                             onClick={() => !isSorting && setAlgorithm(algo)}
-                            className={`text-left px-4 py-3 border transition-all duration-300 text-[11px] font-bold uppercase tracking-widest ${
+                            className={`text-left px-5 py-4 border transition-all duration-300 transform hover:scale-[1.02] active:scale-[0.98] text-sm font-bold uppercase tracking-widest ${
                                 algorithm === algo 
-                                ? "bg-white text-black border-white" 
-                                : "text-zinc-600 border-zinc-900 hover:border-zinc-700 hover:text-zinc-400"
+                                ? "bg-white text-black border-white shadow-lg" 
+                                : "text-zinc-500 border-zinc-800 hover:border-zinc-500 hover:text-zinc-300"
                             }`}
                         >
                             {algo}
@@ -209,10 +203,10 @@ export default function Home() {
             </section>
 
             <section className="space-y-6">
-                <h2 className="text-[10px] text-zinc-600 tracking-widest uppercase">02 / Dimensions & Entropy</h2>
-                <div className="space-y-4">
-                    <div className="space-y-2">
-                        <label className="text-[9px] text-zinc-500 uppercase">Array Size: {arraySize}</label>
+                <h2 className="text-xs text-zinc-500 tracking-widest uppercase">02 / Dimensions & Entropy</h2>
+                <div className="space-y-6">
+                    <div className="space-y-3">
+                        <label className="text-xs text-zinc-400 uppercase tracking-widest">Array Size: {arraySize}</label>
                         <input 
                             type="range" 
                             min="4" max="64" 
@@ -221,30 +215,30 @@ export default function Home() {
                             className="w-full h-1 bg-zinc-900 appearance-none cursor-pointer accent-white"
                         />
                     </div>
-                    <div className="space-y-2">
-                        <label className="text-[9px] text-zinc-500 uppercase">Custom Input (Comma separated)</label>
+                    <div className="space-y-3">
+                        <label className="text-xs text-zinc-400 uppercase tracking-widest">Custom Input (Comma separated)</label>
                         <input 
                             type="text" 
                             value={customInput}
                             onChange={(e) => setCustomInput(e.target.value)}
                             placeholder="e.g. 50, 10, 99, 2"
-                            className="w-full bg-black border border-zinc-900 text-[10px] p-2 text-zinc-300 focus:outline-none focus:border-zinc-500 transition-colors"
+                            className="w-full bg-black border border-zinc-800 text-sm p-4 text-zinc-200 focus:outline-none focus:border-zinc-400 transition-colors"
                         />
                     </div>
                 </div>
             </section>
 
             <section className="space-y-6">
-                <h2 className="text-[10px] text-zinc-600 tracking-widest uppercase">03 / Kinetic Speed</h2>
+                <h2 className="text-xs text-zinc-500 tracking-widest uppercase">03 / Kinetic Speed</h2>
                 <div className="space-y-4">
                     <input 
                         type="range" 
                         min="1" max="100" 
                         value={speed}
                         onChange={(e) => handleSpeedChange(Number(e.target.value))}
-                        className="w-full h-1 bg-zinc-900 appearance-none cursor-pointer accent-white"
+                        className="w-full h-1.5 bg-zinc-800 appearance-none cursor-pointer accent-white"
                     />
-                    <div className="flex justify-between text-[9px] text-zinc-700 uppercase tracking-widest">
+                    <div className="flex justify-between text-[10px] text-zinc-500 uppercase tracking-widest">
                         <span>Languid</span>
                         <span>Frenetic</span>
                     </div>
@@ -258,21 +252,24 @@ export default function Home() {
                 <DetonateButton onClick={startSort} disabled={isSorting}>
                     Initiate Execute
                 </DetonateButton>
+                <DetonateButton onClick={() => stopRequestedRef.current = true} disabled={!isSorting}>
+                    Halt Execution
+                </DetonateButton>
             </section>
         </div>
 
         {/* Visualizer Stage */}
         <div className="lg:col-span-2 p-8 flex flex-col items-center justify-center relative overflow-hidden bg-black/20">
-            <div className="absolute top-8 left-8 text-[10px] text-zinc-800 tracking-widest uppercase flex flex-col gap-1">
+            <div className="absolute top-8 left-8 text-xs text-zinc-700 tracking-widest uppercase flex flex-col gap-1">
                 <span>Stage / Visual Buffer</span>
                 {isSorting && <PretextMiniBar progress={progress} />}
             </div>
             
-            <div className="absolute top-8 right-8 text-[10px] text-zinc-800 tracking-widest uppercase text-right">
+            <div className="absolute top-8 right-8 text-xs text-zinc-700 tracking-widest uppercase text-right">
                 <span>Algo: {algorithm.toUpperCase()}</span>
             </div>
             
-            <div className="flex gap-4 items-end h-64 w-full max-w-2xl px-8">
+            <div className={`flex items-end h-64 w-full px-4 sm:px-8 max-w-full lg:max-w-4xl overflow-hidden ${array.length > 32 ? 'gap-[1px]' : 'gap-2'}`}>
                 {array.map((value, idx) => (
                     <motion.div
                         key={`${idx}-${value}`}
@@ -296,9 +293,9 @@ export default function Home() {
                             layout: { duration: 0.4, ease: [0.2, 0, 0, 1] },
                             height: { duration: 0.3 }
                         }}
-                        className={`flex-1 border self-end flex flex-col items-center justify-end pb-4 group relative`}
+                        className={`flex-1 border min-w-[2px] self-end flex flex-col items-center justify-end pb-0 sm:pb-1 group relative overflow-visible`}
                     >
-                        <span className={`text-[12px] font-black mix-blend-difference`}>
+                        <span className={`font-black mix-blend-difference ${array.length > 32 ? "text-[7px]" : array.length > 24 ? "text-[9px]" : "text-xs"} mb-[2px]`}>
                             {value}
                         </span>
                     </motion.div>
