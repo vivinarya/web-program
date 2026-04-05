@@ -32,10 +32,10 @@ export const PretextLoader: React.FC<LoaderProps> = ({ progress, label, color = 
   const barText = "[" + "=".repeat(filledChars) + ">" + "-".repeat(Math.max(0, barChars - filledChars - 1)) + "]";
 
   return (
-    <div className="flex flex-col gap-1 font-mono text-[9px] w-full max-w-[200px]">
+    <div className="flex flex-col justify-end h-full gap-1 font-mono text-[9px] w-full max-w-[200px] mx-auto">
       <div className="flex justify-between items-end opacity-50 px-1">
-        <span>{label}</span>
-        <span>{Math.round(progress)}%</span>
+        <span className="leading-tight">{label}</span>
+        <span className="leading-tight">{Math.round(progress)}%</span>
       </div>
       <div className="relative h-[14px] bg-zinc-900 border border-zinc-800 overflow-hidden group">
         {/* The "Pretext" optimized background layer */}
@@ -96,7 +96,7 @@ export const PretextDiagnosticPanel: React.FC<{ isSorting: boolean; progress: nu
         <span className="text-[10px] text-zinc-500 tracking-widest uppercase">System Flux Dynamics</span>
       </div>
       
-      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
+      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6 items-end">
         <PretextLoader label="Entropy Resolution" progress={progress} />
         <PretextLoader label="Array Density" progress={85} />
         <PretextLoader label="Kinetic Velocity" progress={isSorting ? 92 : 0} />
