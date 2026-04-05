@@ -1,6 +1,5 @@
 # AlgoVision ::: Engine
 **A Brutalist High-Performance Kinetic Visualizer**
-*Built by DeepMind Advanced Coding // Antigravity*
 
 AlgoVision is a monochrome, state-of-the-art sorting visualizer utilizing advanced React paradigms. Instead of mechanically resolving loops client-side, the engine connects to a headless API backend to farm algorithmic instructions, which are then physically executed via dynamic fractional scaling and spring physics. 
 

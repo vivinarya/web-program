@@ -174,7 +174,7 @@ export default function Home() {
       <header className="relative z-10 p-8 flex justify-between items-end border-b border-zinc-900 bg-black/60 backdrop-blur-md">
         <div className="space-y-1">
             <h1 className="text-3xl font-black tracking-tighter uppercase sm:text-5xl glimmer-hover-text cursor-default">AlgoVision <span className="text-zinc-600">:::</span> Engine</h1>
-            <p className="text-[12px] text-zinc-500 tracking-[0.3em] uppercase">Computational Kinetic Visualizer // A-G S-01</p>
+            <p className="text-[12px] text-zinc-500 tracking-[0.3em] uppercase">Computational Kinetic Visualizer // AV S-01</p>
         </div>
       </header>
 
@@ -315,8 +315,8 @@ export default function Home() {
       </main>
 
       <footer className="relative z-10 p-4 text-[9px] text-zinc-800 border-t border-zinc-900 bg-black flex justify-between tracking-widest uppercase">
-          <span>Antigravity Engine // Verified</span>
-          <span>© 2026 // DeepMind Advanced Coding</span>
+          <span>System Engine // Verified</span>
+          <span>© 2026 // Algorithms</span>
       </footer>
     </div>
   );
